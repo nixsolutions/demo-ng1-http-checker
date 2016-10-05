@@ -9,7 +9,7 @@ export default class FindServerService {
   /**
    * Method to get available url with lowest priority code
    * @param {Array} objects - Array of url objects {url, priority}
-   * @return {Promise} - Promise<object> returns promise with object that has available url and lowest priority in resolve or error in reject
+   * @return {Promise} - Promise with object that has available url and lowest priority in resolve or error in reject
    * @example findServer([{url: 'http://google.com', priority: 1}, {url: 'http://amazon.com', prioroty: 2}])
    *  // {url: 'http://google.com', priority: 1}
    */
