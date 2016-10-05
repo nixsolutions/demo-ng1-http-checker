@@ -20,7 +20,8 @@ module.exports = {
       { test: /\.html$/, loader: 'html' },
       { test: /\.less/, loader: ExtractTextPlugin.extract('style', 'css!less?sourceMap') },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style', 'css') },
-      { test: /\.(woff2?|ttf|eot|svg)(.*)?$/, loader: "file?name=fonts/[name].[ext]" }
+      { test: /\.(woff2?|ttf|eot|svg)(.*)?$/, loader: "file?name=fonts/[name].[ext]" },
+      { test: /\.scss$/, loaders: ["style", "css", "sass"] }
     ]
   },
   plugins: [

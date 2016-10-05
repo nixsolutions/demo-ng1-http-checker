@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "karma:test": "./node_modules/karma/bin/karma start",
-    "karma:init": "./node_modules/karma/bin/karma init"
+    "karma:init": "./node_modules/karma/bin/karma init",
+    "start": "webpack-dev-server",
+    "start:watch": "webpack-dev-server -w"
   },
   "author": "",
   "license": "ISC",
@@ -37,7 +39,10 @@
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "ng-annotate-loader": "^0.1.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^1.13.0"
+    "webpack": "^1.13.0",
+    "webpack-dev-server": "^1.16.1"
   }
 }

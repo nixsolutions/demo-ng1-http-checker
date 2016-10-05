@@ -3,14 +3,32 @@ export default class CardItemModalInstance {
     'ngInject';
     this.findServer = findServer;
     this.jsonResult = '';
+    this.dataIsCorrect = false;
   }
 
   getResult() {
-    this.findServer.findServer(this.json).then(response => {
+    let data = this.convertTextToArray(this.text);
+
+    this.findServer.findServer(data).then(response => {
       this.jsonResult = response;
     }, error => {
-      this.jsonResult = 'error on load urls'
+      this.jsonResult = error.message;
     });
+  }
+
+  checkCorrectData() {
+    this.dataIsCorrect = this.convertTextToArray(this.text);
+  }
+
+  convertTextToArray(text) {
+    let parsedJson;
+    try {
+      eval('parsedJson = ' + text);
+    } catch (e) {
+      parsedJson = false;
+    }
+
+    return Array.isArray(parsedJson) && parsedJson;
   }
 
 }
