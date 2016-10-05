@@ -29,9 +29,9 @@
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
     "html-webpack-plugin": "^2.16.0",
-    "less": "^2.6.1",
-    "less-loader": "^2.2.3",
     "ng-annotate-loader": "^0.1.0",
+    "node-sass": "^3.10.1",
+    "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0",
     "webpack-dev-server": "^1.16.1"
