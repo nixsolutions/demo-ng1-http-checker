@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12"><h1>Response test</h1></div>
+    <div class="col-md-6">
+      <div class="form-group center">
+        <textarea class="form-control" rows="10" ng-model="RListCtrl.json"></textarea>
+      </div>
+      <div class="clearfi">
+        <button class="btn btn-success btn-large pull-right" ng-click="RListCtrl.getResult()">Test JSON</button>
+      </div>
+
+    </div>
+    <div class="col-md-6">
+      <pre ng-if="RListCtrl.jsonResult" ng-bind="RListCtrl.jsonResult | json"></pre>
+    </div>
+  </div>
+</div>
