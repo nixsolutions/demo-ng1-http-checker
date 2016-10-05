@@ -7,9 +7,11 @@ export default class FindServerService {
   }
 
   /**
-   * @param {Array} urls - Array of url objects
-   * @return {Promise} - Promise which the return error string or lowest priority code su
-   *
+   * Method to get highest available url with lowest priority code
+   * @param {Array} urls - Array of url objects {url, priority}
+   * @return {Promise} - Promise which the return error string or lowest priority code url with success reponse code
+   * @example findServer([{url: 'http://google.com', priority: 1}, {url: 'http://amazon.com', prioroty: 2}])
+   *  // {url: 'http://google.com', priority: 1}
    */
   findServer(urls) {
 
