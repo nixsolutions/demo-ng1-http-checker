@@ -2,7 +2,7 @@ var webpack           = require('webpack');
 var CleanPlugin       = require('clean-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+var path              = require('path');
 
 module.exports = {
   context: path.join(__dirname, 'src'),
