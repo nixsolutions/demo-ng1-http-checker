@@ -12,7 +12,7 @@ export default class CardItemModalInstance {
     this.findServer.findServer(data).then(response => {
       this.jsonResult = response;
     }, error => {
-      this.jsonResult = 'error on load urls'
+      this.jsonResult = error.message;
     });
   }
 
