@@ -5,6 +5,7 @@ import './app.less';
 
 import ng from 'angular';
 
-import Components from './components';
+import DemoModule from './demo';
+import FindServerModule from './findServer';
 
-ng.module('app', [Components]);
+ng.module('app', [DemoModule, FindServerModule]);

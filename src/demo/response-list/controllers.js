@@ -1,12 +1,12 @@
 export default class CardItemModalInstance {
-  constructor(ResponseService) {
+  constructor(findServer) {
     'ngInject';
-    this.responseService = ResponseService;
+    this.findServer = findServer;
     this.jsonResult = '';
   }
 
   getResult() {
-    this.responseService.findServer(this.json).then(response => {
+    this.findServer.findServer(this.json).then(response => {
       this.jsonResult = response;
     }, error => {
       this.jsonResult = 'error on load urls'

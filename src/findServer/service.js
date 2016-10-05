@@ -1,4 +1,4 @@
-export default class ResponseListService {
+export default class FindServerService {
 
   constructor($http, $q) {
     'ngInject';
@@ -6,8 +6,13 @@ export default class ResponseListService {
     this.$q = $q;
   }
 
+  /**
+   * @param {Array} urls - Array of url objects
+   * @return {Promise} - Promise
+   *
+   */
   findServer(urls) {
-    urls = this.checkJSONvalid(urls);
+    urls = this.convertTextToArray(urls);
 
     if (!urls) {
       return this.$q.reject();
@@ -20,7 +25,9 @@ export default class ResponseListService {
             data.push(urls[index]);
           }
         }, []);
-      }).then(this.getLowestPriorityItem.bind(this));
+      }).then(data => {
+        return data ? this.getLowestPriorityItem(data) : this.$q.reject();
+      });
   }
 
   makeHttpPromise(url) {
@@ -41,11 +48,11 @@ export default class ResponseListService {
     return returnData[0];
   }
 
-  checkJSONvalid(json) {
+  convertTextToArray(text) {
     let parsedJson;
 
     try {
-      eval('parsedJson = ' + json);
+      eval('parsedJson = ' + text);
     } catch (e) {
       parsedJson = false;
     }
