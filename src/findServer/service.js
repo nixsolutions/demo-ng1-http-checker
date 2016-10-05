@@ -27,6 +27,7 @@ export default class FindServerService {
           if (item.status > 199 && item.status < 300) {
             data.push(urls[index]);
           }
+          return data;
         }, []);
       }).then(data => {
         return data ? FindServerService.getLowestPriorityItem(data) : this.$q.reject({
