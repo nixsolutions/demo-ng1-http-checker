@@ -7,6 +7,24 @@ const { inject, module } = angular.mock;
 
 describe("FindServerService", () => {
   let service;
+  const urls = [
+    {
+      "url": "http://doesNotExist.boldtech.co",
+      "priority": 1
+    },
+    {
+      "url": "http://boldtech.co",
+      "priority": 7
+    },
+    {
+      "url": "http://offline.boldtech.co",
+      "priority": 2
+    },
+    {
+      "url": "http://boldcommunity.com",
+      "priority": 4
+    }
+  ];
 
   beforeEach(function () {
     module('FindServer');
@@ -18,38 +36,38 @@ describe("FindServerService", () => {
 
   it('should not be null',
     inject(() => {
-      console.log(service.findServer);
       return expect(service).not.toBe(null)
     })
   );
 
+  it('findServer method should return available url with lowest priority',
 
-  //
-  // it('request',
-  //   inject(($httpBackend) => {
-  //     const urls = [
-  //       {
-  //         "url": "http://doesNotExist.boldtech.co",
-  //         "priority": 1
-  //       },
-  //       {
-  //         "url": "http://boldtech.co",
-  //         "priority": 7
-  //       },
-  //       {
-  //         "url": "http://offline.boldtech.co",
-  //         "priority": 2
-  //       },
-  //       {
-  //         "url": "http://boldcommunity.com",
-  //         "priority": 4
-  //       }
-  //     ];
-  //
-  //     FindServerService.findServer(urls);
-  //     $httpBackend.whenGET('/fake-url').respond(200, urls);
-  //     $httpBackend.flush();
-  //     // FindServerService.findServer(urls)
-  //   })
-  // );
+    inject($httpBackend => {
+
+      $httpBackend.whenGET(urls[0].url).respond(199, {});
+      $httpBackend.whenGET(urls[1].url).respond(200, {});
+      $httpBackend.whenGET(urls[2].url).respond(250, {});
+      $httpBackend.whenGET(urls[3].url).respond(300, {});
+      service.findServer(urls).then(response => {
+        expect(response.url).toBe(urls[2].url);
+      });
+      $httpBackend.flush();
+    })
+  );
+
+
+  it('findServer method should throw error with message if all servers are unreachable',
+
+    inject($httpBackend => {
+      $httpBackend.whenGET(urls[0].url).respond(199, {});
+      $httpBackend.whenGET(urls[1].url).respond(300, {});
+      $httpBackend.whenGET(urls[2].url).respond(301, {});
+      $httpBackend.whenGET(urls[3].url).respond(401, {});
+      service.findServer(urls).catch(err => {
+        expect(err.message).not.toBe(undefined);
+      });
+      $httpBackend.flush();
+    })
+
+  );
 });

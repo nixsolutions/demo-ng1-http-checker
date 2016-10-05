@@ -30,7 +30,7 @@ export default class FindServerService {
           return data;
         }, []);
       }).then(data => {
-        return data ? FindServerService.getLowestPriorityItem(data) : this.$q.reject({
+        return data && data.length ? FindServerService.getLowestPriorityItem(data) : this.$q.reject({
           message: 'There is no available servers'
         });
       });

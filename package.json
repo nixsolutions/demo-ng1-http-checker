@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "karma:test": "./node_modules/karma/bin/karma start",
-    "karma:init": "./node_modules/karma/bin/karma init",
+    "test": "./node_modules/karma/bin/karma start",
     "start": "webpack-dev-server",
     "start:watch": "webpack-dev-server -w"
   },
@@ -36,6 +35,7 @@
     "karma": "^1.3.0",
     "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-webpack": "^1.8.0",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "ng-annotate-loader": "^0.1.0",
