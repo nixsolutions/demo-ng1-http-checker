@@ -8,15 +8,16 @@ export default class FindServerService {
 
   /**
    * @param {Array} urls - Array of url objects
-   * @return {Promise} - Promise
+   * @return {Promise} - Promise which the return error string or lowest priority code su
    *
    */
   findServer(urls) {
-    urls = this.convertTextToArray(urls);
 
     if (!urls) {
       return this.$q.reject();
     }
+
+    urls = urls.filter(item => item.url && item.priority);
 
     return this.$q.all(urls.map(item => this.makeHttpPromise(item.url)))
       .then(data => {
@@ -26,7 +27,7 @@ export default class FindServerService {
           }
         }, []);
       }).then(data => {
-        return data ? this.getLowestPriorityItem(data) : this.$q.reject();
+        return data ? FindServerService.getLowestPriorityItem(data) : this.$q.reject();
       });
   }
 
@@ -36,27 +37,16 @@ export default class FindServerService {
     });
   }
 
-  getLowestPriorityItem(data) {
-    const testResult = this.checkJSONvalid(data);
+  static getLowestPriorityItem(data) {
 
-    if (!testResult && !testResult.length) {
-      return '';
+    if (!data && !data.length) {
+      return false;
     }
 
-    let returnData = testResult.sort((a, b) => a.priority - b.priority);
+    const returnData = data.sort((a, b) => a.priority - b.priority);
 
     return returnData[0];
   }
 
-  convertTextToArray(text) {
-    let parsedJson;
 
-    try {
-      eval('parsedJson = ' + text);
-    } catch (e) {
-      parsedJson = false;
-    }
-
-    return Array.isArray(parsedJson) && parsedJson;
-  }
 }
