@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb/base",
+  "ecmaFeatures": {
+    "modules": true,
+    "es6": true
+  },
+  "rules": {
+    "no-undef" : 0,
+    "comma-dangle": 0,
+    "object-shorthand" : 0,
+    "no-underscore-dangle" : 0,
+    "prefer-arrow-callback" : 0,
+    "object-curly-spacing": 2,
+    "no-param-reassign": ["error", { "props": false }],
+    "id-length": [2, {"min": 2, "properties": "never", "exceptions": ["x", "n", "i", "e", "$", "_", "g"]}]
+  }
+}
