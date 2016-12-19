@@ -2,7 +2,6 @@ Angular 1.x Demo Application - Find Server
 ====================================================
 
 This module checks income urls on availability and returns one with higher priority.
-[Demo](https://nixsolutions.github.io/demo-ng1-http-checker/). 
 Please user array of objects as a test data, like:
 [
     {
@@ -14,6 +13,9 @@ Please user array of objects as a test data, like:
       "priority": 2
     }
 ]
+
+The app demonstrates work of servers searching algorithm. The demo receives a list of servers with different priority.  It sends requests to all  servers (in the sequence priority ) in order to check their availability(200-th status) and returns one server with the highest priority. This algorithm can be used in tasks like finding the nearest server based on the user’s location.
+[Demo](https://nixsolutions.github.io/demo-ng1-http-checker/)
 
 Features
 --------
